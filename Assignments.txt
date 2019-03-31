@@ -4,3 +4,5 @@
 1. In Hello Component display how many times was button clicked
 2. Use <text> component
 3. Remove alert from click handler
+
+exp r -c
