@@ -1,8 +1,8 @@
 <template>
   <view class="container">
-    <HomeScreen v-if="activeScreen === 'homeScreen'" />
+    <HomeScreen v-if="activeScreen === 'homeScreen'"
+                :testingData="testingData" />
     <Screen1 v-if="activeScreen === 'screen1'" />
-    <button title="Go to Screen 1" :on-press="() => navigate('screen1')" />
   </view>
 </template>
 
@@ -15,7 +15,8 @@
     },
     data () {
       return {
-        activeScreen: 'homeScreen'
+        activeScreen: 'homeScreen',
+        testingData: 'Value from App Component'
       }
     },
     methods: {
