@@ -1,8 +1,10 @@
 <template>
   <view class="container">
     <HomeScreen v-if="activeScreen === 'homeScreen'"
-                :testingData="testingData" />
-    <Screen1 v-if="activeScreen === 'screen1'" />
+                :testingData="testingData"
+                :navigate="navigate" />
+    <Screen1 v-if="activeScreen === 'screen1'"
+             :navigate="navigate" />
   </view>
 </template>
 
