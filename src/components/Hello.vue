@@ -3,6 +3,8 @@
   <view>
     <text class="text-color-primary">{{message}}</text>
     <button :title="btnMessage" :on-press="handleClick" />
+    <text class="count-text">{{clickCount}}</text>
+    <text>{{clickMotivation}}</text>
   </view>
 </template>
 
@@ -15,10 +17,18 @@
         clickCount: 0
       }
     },
+    computed: {
+      clickMotivation () {
+        if (this.clickCount < 5) {
+          return "Please Click Me!"
+        } else {
+          return "Good Job! Keep Clicking"
+        }
+      }
+    },
     methods: {
       handleClick () {
         this.clickCount++
-        alert(`I am Clicked! Click Count: ${this.clickCount}`)
       }
     }
   }
@@ -28,4 +38,13 @@
   .text-color-primary {
     color: blue;
   }
+
+  .count-text {
+    font-size: 30px;
+  }
+
 </style>
+
+
+
+
