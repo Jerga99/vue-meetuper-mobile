@@ -14,8 +14,8 @@
   const HomeStack = createStackNavigator(
     {
       Home: HomeScreen,
-      Screen1: Screen1,
-      Screen2: Screen2
+      ScreenOne: Screen1,
+      ScreenTwo: Screen2
     },
     {
       initialRouteName: 'Home'
