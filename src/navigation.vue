@@ -13,6 +13,7 @@
 
   import { createStackNavigator,
            createBottomTabNavigator,
+           createDrawerNavigator,
            createAppContainer } from 'react-navigation'
 
   const HomeStack = createStackNavigator(
@@ -25,14 +26,19 @@
     }
   )
 
-  const SomeOtherStack = createStackNavigator({
+  // const SomeOtherStack = createStackNavigator({
+  //   Screen2,
+  //   Screen3
+  // })
+
+  const DrawerNavigation = createDrawerNavigator({
     Screen2,
     Screen3
   })
 
   const TabNavigation = createBottomTabNavigator({
     Meetups: HomeStack,
-    Other: SomeOtherStack
+    Other: DrawerNavigation
   })
 
   const AppNavigation = createAppContainer(TabNavigation)
