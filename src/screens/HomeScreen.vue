@@ -18,15 +18,17 @@
     },
     data () {
       return {
-        title: 'Home Screen!',
-        todos: []
+        title: 'Home Screen!'
+      }
+    },
+    computed: {
+      // 5. Get todos from state
+      todos () {
+        return this.$store.state.todos
       }
     },
     created () {
-      axios.get('https://jsonplaceholder.typicode.com/todos')
-        .then(res => {
-          this.todos = res.data
-        })
+      this.$store.dispatch('fetchTodos')
     },
     methods: {
       goToScreen1 () {
