@@ -26,14 +26,27 @@
     }
   )
 
-  // const SomeOtherStack = createStackNavigator({
-  //   Screen2,
-  //   Screen3
-  // })
+  const SomeOtherStack = createStackNavigator({
+    Screen2
+  },{
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false
+    }
+  })
+
+  const SomeOtherOtherStack = createStackNavigator({
+    Screen3
+  },{
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false
+    }
+  })
 
   const DrawerNavigation = createDrawerNavigator({
-    Screen2,
-    Screen3
+    DrawerStack1: SomeOtherStack,
+    DrawerStack2: SomeOtherOtherStack
   })
 
   const TabNavigation = createBottomTabNavigator({
