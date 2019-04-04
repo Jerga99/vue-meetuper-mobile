@@ -28,7 +28,7 @@
         </nb-button>
       </nb-left>
       <nb-right>
-        <nb-button :on-press="navigateToDetail">
+        <nb-button :on-press="() => navigateToDetail(meetup._id)">
           <nb-text>Visit Meetup</nb-text>
         </nb-button>
       </nb-right>
