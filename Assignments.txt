@@ -16,3 +16,10 @@ exp r -c
 6. Create state of meetups and assign empty array to it
 7. Get meetups as computed property in home screen
 8. Iterate meetups and display meetup.title
+
+
+##### 3 ######
+1. Create new component "MeetupCard"
+2. Move all of the functionality related to meetup card to new component
+
+
