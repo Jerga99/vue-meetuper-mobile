@@ -6,6 +6,7 @@
 
 <script>
   import HomeScreen from '@/screens/HomeScreen'
+  import MeetupDetailScreen from '@/screens/MeetupDetailScreen'
   import Screen1 from '@/screens/Screen1'
   import Screen2 from '@/screens/Screen2'
   import Screen3 from '@/screens/Screen3'
@@ -19,6 +20,7 @@
   const HomeStack = createStackNavigator(
     {
       Home: HomeScreen,
+      Meetup: MeetupDetailScreen,
       ScreenOne: Screen1
     },
     {

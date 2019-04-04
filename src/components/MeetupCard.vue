@@ -27,6 +27,11 @@
           <nb-text>{{meetup.joinedPeopleCount}} people are comming</nb-text>
         </nb-button>
       </nb-left>
+      <nb-right>
+        <nb-button :on-press="navigateToDetail">
+          <nb-text>Visit Meetup</nb-text>
+        </nb-button>
+      </nb-right>
     </nb-card-item>
   </nb-card>
 </template>
@@ -36,6 +41,10 @@
     props: {
       meetup: {
         type: Object,
+        required: true
+      },
+      navigateToDetail: {
+        type: Function,
         required: true
       }
     },

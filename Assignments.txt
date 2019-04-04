@@ -22,4 +22,14 @@ exp r -c
 1. Create new component "MeetupCard"
 2. Move all of the functionality related to meetup card to new component
 
+##### 4 ######
+1. Create "MeetupDetailScreen" and in a template display just text "MeetupDetailScreen"
+2. Register MeetupDetailScreen as a part of HomeStack navigation under name of
+   "Meetup"
+3. On Button click navigate to meetup detail screen
+   Note: Pass navigation as a prop to MeetupCard or Pass function to navigate
+
+
+
+
 
