@@ -1,8 +1,18 @@
 
-
-
+###### 1 #######
 1. In Hello Component display how many times was button clicked
 2. Use <text> component
 3. Remove alert from click handler
 
+#### Cache Reset ####
 exp r -c
+
+###### 2 #######
+1. Create action fetchMeetups
+2. Send Get Request to `${BASE_URL}/meetups` to get meetups
+3. Get meetups from res.data
+4. Create mutation to save meetups to the state
+5. Set meetups to the state
+6. Create state of meetups and assign empty array to it
+7. Get meetups as computed property in home screen
+8. Iterate meetups and display meetup.title

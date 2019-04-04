@@ -1,8 +1,8 @@
 <template>
   <scroll-view>
     <nb-list>
-      <nb-list-item v-for="todo in todos">
-        <nb-text>{{todo.title}}</nb-text>
+      <nb-list-item v-for="meetup in meetups">
+        <nb-text>{{meetup.title}}</nb-text>
       </nb-list-item>
     </nb-list>
   </scroll-view>
@@ -25,10 +25,14 @@
       // 5. Get todos from state
       todos () {
         return this.$store.state.todos
+      },
+      meetups () {
+        return this.$store.state.meetups
       }
     },
     created () {
       this.$store.dispatch('fetchTodos')
+      this.$store.dispatch('fetchMeetups')
     },
     methods: {
       goToScreen1 () {
