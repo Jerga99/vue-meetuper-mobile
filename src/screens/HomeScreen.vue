@@ -27,12 +27,12 @@
         return this.$store.state.todos
       },
       meetups () {
-        return this.$store.state.meetups
+        return this.$store.state.meetups.items
       }
     },
     created () {
       this.$store.dispatch('fetchTodos')
-      this.$store.dispatch('fetchMeetups')
+      this.$store.dispatch('meetups/fetchMeetups')
     },
     methods: {
       goToScreen1 () {
