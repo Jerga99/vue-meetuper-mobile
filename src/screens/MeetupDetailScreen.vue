@@ -2,23 +2,26 @@
 
 <template>
   <nb-container v-if="isMeetupLoaded">
-    <!-- meetup title -->
     <view :style="styles.container">
       <nb-h1 :style="styles.headerOne">{{meetup.title}}</nb-h1>
-      <!-- meetup creator avatar  -->
       <nb-thumbnail :source="{uri: meetupCreator.avatar}"/>
+      <nb-text :style="styles.label">
+        by {{meetupCreator.name}}
+      </nb-text>
     </view>
-    <!-- apply styles label and padding left -->
-    <!-- meetup creator name -->
-    <nb-text :style="[styles.label, {paddingLeft: 20}]">
-      by {{meetupCreator.name}}
-    </nb-text>
     <nb-content>
       <nb-card>
-        <nb-card-item header bordered>
-          <nb-text>Details</nb-text>
-        </nb-card-item>
-        <MeetupDetailInfo :meetup="meetup"/>
+        <nb-tabs>
+          <nb-tab heading="Details">
+            <MeetupDetailInfo :meetup="meetup"/>
+          </nb-tab>
+          <nb-tab heading="Threads">
+            <text>Threads</text>
+          </nb-tab>
+           <nb-tab heading="Joined People">
+            <text>Joined People</text>
+          </nb-tab>
+        </nb-tabs>
       </nb-card>
     </nb-content>
   </nb-container>
