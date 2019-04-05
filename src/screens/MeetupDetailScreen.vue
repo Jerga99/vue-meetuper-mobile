@@ -48,6 +48,9 @@
       meetup () {
         return this.$store.state.meetups.item
       },
+      threads () {
+        return this.$store.state.threads.items
+      },
       isMeetupLoaded () {
         return Object.keys(this.meetup).length > 0
       },
@@ -59,6 +62,8 @@
       const meetupId = this.navigation.getParam('meetupId', 'undefined')
 
       this.$store.dispatch('meetups/fetchMeetupById', meetupId)
+      this.$store.dispatch('threads/fetchThreads', meetupId)
+        .then(threads => alert(threads))
     }
   }
 </script>

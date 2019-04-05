@@ -4,12 +4,14 @@ import Vue from 'vue-native-core'
 import axios from 'axios'
 
 import meetups from './modules/meetups'
+import threads from './modules/threads'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    meetups
+    meetups,
+    threads
   },
   // Like data in component. We are keeping our data in the state
   state: {

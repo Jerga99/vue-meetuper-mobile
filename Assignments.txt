@@ -30,4 +30,14 @@ exp r -c
    Note: Pass navigation as a prop to MeetupCard or Pass function to navigate
 
 
+###### 5 #######
+1. Create new store module called "threads"
+2. Create state of "items" and function fetchThreads and expect to receive meetupId
+3. In fetchThreads send GET request to `${BASE_URL}/threads?meetupId=${meetupId}`
+4. Get threads from res.data
+5. Create mutation to save threads to the state
+6. Set threads to the state
+7. In MeetupDetailScreen in created lifecycle dispatch function fetchThreads
+8. In computed properties get threads from threads state
+
 
