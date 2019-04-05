@@ -16,7 +16,7 @@
             <MeetupDetailInfo :meetup="meetup"/>
           </nb-tab>
           <nb-tab heading="Threads">
-            <text>Threads</text>
+            <MeetupThreads :threads="threads" />
           </nb-tab>
            <nb-tab heading="Joined People">
             <text>Joined People</text>
@@ -29,10 +29,12 @@
 
 <script>
   import MeetupDetailInfo from '@/components/MeetupDetailInfo'
+  import MeetupThreads from '@/components/MeetupThreads'
   import styles from '@/styles'
   export default {
     components: {
-      MeetupDetailInfo
+      MeetupDetailInfo,
+      MeetupThreads
     },
     props: {
       navigation: {
@@ -63,7 +65,6 @@
 
       this.$store.dispatch('meetups/fetchMeetupById', meetupId)
       this.$store.dispatch('threads/fetchThreads', meetupId)
-        .then(threads => alert(threads))
     }
   }
 </script>

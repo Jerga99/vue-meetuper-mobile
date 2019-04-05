@@ -15,7 +15,7 @@ export default {
     fetchThreads ({commit, state}, meetupId) {
       return axios.get(`${BASE_URL}/threads?meetupId=${meetupId}`)
         .then(res => {
-          const threads = res.data
+          const threads = res.data.threads
           commit('setItems', {items: threads, resource: 'threads'}, {root: true})
           return state.items
         })
