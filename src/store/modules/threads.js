@@ -16,14 +16,9 @@ export default {
       return axios.get(`${BASE_URL}/threads?meetupId=${meetupId}`)
         .then(res => {
           const threads = res.data
-          commit('setThreads', threads)
+          commit('setItems', {items: threads, resource: 'threads'}, {root: true})
           return state.items
         })
-    }
-  },
-  mutations: {
-    setThreads (state, threads) {
-      Vue.set(state, 'items', threads)
     }
   }
 }

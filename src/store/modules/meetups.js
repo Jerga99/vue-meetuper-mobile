@@ -20,7 +20,7 @@ export default {
       return axios.get(`${BASE_URL}/meetups`)
         .then(res => {
           const meetups = res.data
-          commit('setMeetups', meetups)
+          commit('setItems', {items: meetups, resource: 'meetups'}, {root: true})
           return state.items
         })
     },
@@ -35,9 +35,6 @@ export default {
     }
   },
   mutations: {
-    setMeetups (state, meetups) {
-      Vue.set(state, 'items', meetups)
-    },
     setMeetup (state, meetup) {
       Vue.set(state, 'item', meetup)
     }
