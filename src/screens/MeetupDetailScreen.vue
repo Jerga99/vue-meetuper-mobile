@@ -1,15 +1,17 @@
 
 
 <template>
-  <nb-container>
+  <nb-container v-if="isMeetupLoaded">
     <!-- meetup title -->
-    <nb-h1 :style="[styles.headerOne, styles.container]">Hiking in Almada</nb-h1>
-    <!-- meetup creator avatar  -->
-    <nb-thumbnail />
+    <view :style="styles.container">
+      <nb-h1 :style="styles.headerOne">{{meetup.title}}</nb-h1>
+      <!-- meetup creator avatar  -->
+      <nb-thumbnail :source="{uri: meetupCreator.avatar}"/>
+    </view>
     <!-- apply styles label and padding left -->
     <!-- meetup creator name -->
     <nb-text :style="[styles.label, {paddingLeft: 20}]">
-      by Filip Jerga
+      by {{meetupCreator.name}}
     </nb-text>
     <nb-content>
       <nb-card>
@@ -23,28 +25,28 @@
               Date
             </nb-text>
             <nb-text>
-              14th Feb 2018
+              {{meetup.startDate}}
             </nb-text>
             <!-- Label Styles -->
             <nb-text :style="styles.label">
               From
             </nb-text>
             <nb-text>
-              14:00
+              {{meetup.timeFrom}}
             </nb-text>
             <!-- Label Styles -->
             <nb-text :style="styles.label">
               To
             </nb-text>
             <nb-text>
-              13:00
+              {{meetup.timeTo}}
             </nb-text>
             <!-- Label Styles -->
             <nb-text :style="styles.label">
               Category
             </nb-text>
             <nb-text>
-              Music
+              {{meetup.category.name}}
             </nb-text>
             <!-- Label Styles -->
             <nb-text :style="styles.label">
@@ -52,7 +54,7 @@
             </nb-text>
             <!-- short info -->
             <nb-text>
-              Some nice short info
+              {{meetup.shortInfo}}
             </nb-text>
           </nb-body>
         </nb-card-item>
@@ -63,7 +65,7 @@
           <nb-body>
             <!-- description -->
             <nb-text>
-              NativeBase is a free and open source framework that enable developers to build high-quality mobile apps using React Native iOS and Android apps with a fusion of ES6.
+              {{meetup.description}}
             </nb-text>
           </nb-body>
         </nb-card-item>
@@ -88,6 +90,12 @@
     computed: {
       meetup () {
         return this.$store.state.meetups.item
+      },
+      isMeetupLoaded () {
+        return Object.keys(this.meetup).length > 0
+      },
+      meetupCreator () {
+        return this.meetup.meetupCreator || {}
       }
     },
     created () {
