@@ -9,7 +9,7 @@
           Date
         </nb-text>
         <nb-text>
-          {{meetup.startDate}}
+          {{meetup.startDate | formatDate}}
         </nb-text>
         <!-- Label Styles -->
         <nb-text :style="styles.label">

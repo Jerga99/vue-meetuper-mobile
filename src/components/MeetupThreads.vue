@@ -18,7 +18,7 @@
           </nb-body>
           <nb-right>
             <!-- Thread Date -->
-            <nb-text note>{{thread.createdAt}}</nb-text>
+            <nb-text note>{{thread.createdAt | formatDate}}</nb-text>
           </nb-right>
         </nb-list-item>
         <!-- Iterate Posts Here -->
@@ -35,7 +35,7 @@
               <nb-text note>{{post.text}}</nb-text>
             </nb-body>
             <nb-right>
-              <nb-text note>{{post.updatedAt}}</nb-text>
+              <nb-text note>{{post.updatedAt | fromNow}}</nb-text>
             </nb-right>
           </nb-list-item>
         </view>
