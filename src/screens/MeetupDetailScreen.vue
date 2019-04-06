@@ -19,7 +19,7 @@
             <MeetupThreads :threads="threads" />
           </nb-tab>
            <nb-tab heading="Joined People">
-            <text>Joined People</text>
+            <MeetupPeople :people="meetup.joinedPeople" />
           </nb-tab>
         </nb-tabs>
       </nb-card>
@@ -30,11 +30,13 @@
 <script>
   import MeetupDetailInfo from '@/components/MeetupDetailInfo'
   import MeetupThreads from '@/components/MeetupThreads'
+  import MeetupPeople from '@/components/MeetupPeople'
   import styles from '@/styles'
   export default {
     components: {
       MeetupDetailInfo,
-      MeetupThreads
+      MeetupThreads,
+      MeetupPeople
     },
     props: {
       navigation: {
