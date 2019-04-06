@@ -5,15 +5,24 @@
 </template>
 
 <script>
-  import Navigation from './navigation'
   import Vue from "vue-native-core";
   import { VueNativeBase } from "native-base";
+
   import store from './store'
-  import ScreenWithDrawer from '@/components/ScreenWithDrawer'
+  import Navigation from './navigation'
   import moment from 'moment'
 
+  import ScreenWithDrawer from '@/components/ScreenWithDrawer'
+  import AppMessage from '@/components/AppMessage'
+
+  // Registering Plugins
   Vue.use(VueNativeBase);
+
+  // Registering Component
   Vue.component('ScreenWithDrawer', ScreenWithDrawer)
+  Vue.component('AppMessage', AppMessage)
+
+  // Provide store to global context of vue
   Vue.prototype.$store = store
 
   Vue.filter('upperCase', function(value) {

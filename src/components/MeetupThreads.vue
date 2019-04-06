@@ -42,6 +42,10 @@
       </view>
     </nb-content>
   </nb-container>
+  <nb-container v-else>
+    <AppMessage message="There are no threads currently created :("
+                msgType="warning"/>
+  </nb-container>
 </template>
 
 <script>
