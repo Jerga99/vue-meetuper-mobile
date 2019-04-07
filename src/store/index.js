@@ -5,13 +5,15 @@ import axios from 'axios'
 
 import meetups from './modules/meetups'
 import threads from './modules/threads'
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     meetups,
-    threads
+    threads,
+    auth
   },
   // Like data in component. We are keeping our data in the state
   state: {
