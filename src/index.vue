@@ -14,6 +14,7 @@
   import Vuelidate from 'vuelidate'
 
   import ScreenWithDrawer from '@/components/ScreenWithDrawer'
+  import InputWithError from '@/components/InputWithError'
   import AppMessage from '@/components/AppMessage'
 
   // Registering Plugins
@@ -23,6 +24,7 @@
   // Registering Component
   Vue.component('ScreenWithDrawer', ScreenWithDrawer)
   Vue.component('AppMessage', AppMessage)
+  Vue.component('InputWithError', InputWithError)
 
   // Provide store to global context of vue
   Vue.prototype.$store = store

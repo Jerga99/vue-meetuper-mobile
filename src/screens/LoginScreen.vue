@@ -9,19 +9,21 @@
     </nb-header>
     <nb-content padder>
       <nb-form>
-        <nb-item :error="$v.form.email.$dirty && !$v.form.email.required">
+        <InputWithError :error="$v.form.email.$dirty && !$v.form.email.required"
+                        msg="Email is required!">
           <nb-input v-model="form.email"
                     placeholder="Email"
                     auto-capitalize="none"
                     :on-blur="() => $v.form.email.$touch()"/>
-        </nb-item>
-        <nb-item :error="$v.form.password.$dirty && !$v.form.password.required" last>
+        </InputWithError>
+        <InputWithError :error="$v.form.password.$dirty && !$v.form.password.required"
+                        msg="Password is required!">
           <nb-input v-model="form.password"
                     placeholder="Password"
                     auto-capitalize="none"
                     secure-text-entry
                     :on-blur="() => $v.form.password.$touch()" />
-        </nb-item>
+        </InputWithError>
       </nb-form>
       <view :style="{marginTop:10}">
         <nb-button :on-press="login" block>
