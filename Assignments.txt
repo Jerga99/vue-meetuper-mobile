@@ -41,3 +41,21 @@ exp r -c
 8. In computed properties get threads from threads state
 
 
+###### 6 #######
+1. Bind data to your register inputs:
+  username: '',
+  name: '',
+  avatar: '',
+  email: '',
+  password: '',
+  passwordConfirmation: ''
+2. On click of register button alert this data
+3. Create Link to navigate back to login page
+
+
+
+
+
+
+
+
