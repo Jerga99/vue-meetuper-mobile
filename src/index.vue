@@ -11,12 +11,14 @@
   import store from './store'
   import Navigation from './navigation'
   import moment from 'moment'
+  import Vuelidate from 'vuelidate'
 
   import ScreenWithDrawer from '@/components/ScreenWithDrawer'
   import AppMessage from '@/components/AppMessage'
 
   // Registering Plugins
-  Vue.use(VueNativeBase);
+  Vue.use(VueNativeBase)
+  Vue.use(Vuelidate)
 
   // Registering Component
   Vue.component('ScreenWithDrawer', ScreenWithDrawer)

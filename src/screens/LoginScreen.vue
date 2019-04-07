@@ -9,16 +9,18 @@
     </nb-header>
     <nb-content padder>
       <nb-form>
-        <nb-item>
+        <nb-item :error="$v.form.email.$dirty && !$v.form.email.required">
           <nb-input v-model="form.email"
                     placeholder="Email"
-                    auto-capitalize="none"/>
+                    auto-capitalize="none"
+                    :on-blur="() => $v.form.email.$touch()"/>
         </nb-item>
-        <nb-item last>
+        <nb-item :error="$v.form.password.$dirty && !$v.form.password.required" last>
           <nb-input v-model="form.password"
                     placeholder="Password"
                     auto-capitalize="none"
-                    secure-text-entry />
+                    secure-text-entry
+                    :on-blur="() => $v.form.password.$touch()" />
         </nb-item>
       </nb-form>
       <view :style="{marginTop:10}">
@@ -34,6 +36,7 @@
 </template>
 
 <script>
+  import { required } from 'vuelidate/lib/validators'
   export default {
     props: {
       navigation: {
@@ -48,8 +51,19 @@
         }
       }
     },
+    validations: {
+      form: {
+        email: {
+          required
+        },
+        password: {
+          required
+        }
+      }
+    },
     methods: {
       login () {
+        this.$v.form.$touch()
         alert(`${JSON.stringify(this.form)}`)
       },
       goToRegister () {
