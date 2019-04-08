@@ -37,7 +37,6 @@
     },
     created () {
       this.$store.dispatch('meetups/fetchMeetups')
-      this.$store.dispatch('meetups/fetchSecret')
     },
     methods: {
       goToScreen1 () {
