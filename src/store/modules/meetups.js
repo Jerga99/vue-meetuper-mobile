@@ -1,6 +1,7 @@
 import Vue from 'vue-native-core'
 import axios from 'axios'
 import { Platform } from 'react-native'
+import { AsyncStorage } from 'react-native'
 
 const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:3001/api/v1'
                                        : 'http://10.0.2.2:3001/api/v1'
@@ -16,6 +17,22 @@ export default {
 
   },
   actions: {
+    async fetchSecret () {
+      const token = await AsyncStorage.getItem('meetuper-jwt')
+
+      const config = {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      }
+
+      return axios.get(`${BASE_URL}/meetups/secret`, config)
+        .then(res => {
+          const data = res.data
+          alert(JSON.stringify(data))
+        })
+        .catch(() => alert('Not Authorized'))
+    },
     fetchMeetups ({commit, state}) {
       return axios.get(`${BASE_URL}/meetups`)
         .then(res => {
