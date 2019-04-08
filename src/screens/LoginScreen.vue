@@ -1,5 +1,8 @@
 <template>
-  <nb-container :style="{backgroundColor: '#fff'}">
+  <nb-container class="spinner-container" v-if="isCheckingUser">
+    <nb-spinner color="blue" />
+  </nb-container>
+  <nb-container v-else :style="{backgroundColor: '#fff'}">
     <nb-header>
       <nb-body>
         <nb-title>
@@ -33,6 +36,9 @@
       <nb-button transparent :on-press="goToRegister">
         <nb-text>Not Registered? Register Here</nb-text>
       </nb-button>
+      <nb-button transparent :on-press="goToHome">
+        <nb-text>Navigate to Home</nb-text>
+      </nb-button>
     </nb-content>
   </nb-container>
 </template>
@@ -40,7 +46,6 @@
 <script>
   import { required } from 'vuelidate/lib/validators'
   import { Toast } from "native-base";
-  import { AsyncStorage } from 'react-native'
   export default {
     props: {
       navigation: {
@@ -49,6 +54,7 @@
     },
     data () {
       return {
+        isCheckingUser: false,
         form: {
           email: '',
           password: ''
@@ -65,9 +71,11 @@
         }
       }
     },
-    created () {
+    async created () {
+      this.isCheckingUser = true
       this.$store.dispatch('auth/verifyUser')
         .then(() => this.navigation.navigate('Home'))
+        .catch(() => this.isCheckingUser = false)
     },
     methods: {
       login () {
@@ -90,10 +98,21 @@
       },
       goToRegister () {
         this.navigation.navigate('Register')
+      },
+      goToHome () {
+        this.navigation.navigate('Home')
       }
     }
   }
 </script>
+
+<style>
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
 
 
 
