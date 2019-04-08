@@ -1,5 +1,6 @@
 import Vue from 'vue-native-core'
 import axios from 'axios'
+import axiosInstance from '@/services/axios'
 import { Platform } from 'react-native'
 import { AsyncStorage } from 'react-native'
 import jwtDecode from 'jwt-decode'
@@ -20,7 +21,7 @@ export default {
   namespaced: true,
 
   state: {
-    user: {},
+    user: null,
     isAuth: false
   },
   actions: {
@@ -33,11 +34,23 @@ export default {
           return state.user
         })
     },
-    async verifyUser () {
+    fetchCurrentUser ({commit, state}) {
+      return axiosInstance.get(`${BASE_URL}/users/me`)
+        .then(res => {
+          const user = res.data
+          AsyncStorage.setItem('meetuper-jwt', user.token)
+          commit('setAuthUser', user)
+          return state.user
+        })
+    },
+    async verifyUser ({dispatch}) {
       const jwt = await AsyncStorage.getItem('meetuper-jwt')
 
       if (jwt && isTokenValid(jwt)) {
-        return Promise.resolve(jwt)
+        const user = await dispatch('fetchCurrentUser')
+
+        return user ? Promise.resolve(jwt)
+                    : Promise.reject('Cannot fetch user')
       } else {
         return Promise.reject('Token is not valid')
       }
