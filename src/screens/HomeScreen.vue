@@ -28,10 +28,6 @@
       }
     },
     computed: {
-      // 5. Get todos from state
-      todos () {
-        return this.$store.state.todos
-      },
       meetups () {
         return this.$store.state.meetups.items
       },
@@ -40,7 +36,6 @@
       }
     },
     created () {
-      this.$store.dispatch('fetchTodos')
       this.$store.dispatch('meetups/fetchMeetups')
     },
     methods: {
