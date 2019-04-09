@@ -1,8 +1,5 @@
 <template>
-  <nb-container class="spinner-container" v-if="isCheckingUser">
-    <nb-spinner color="blue" />
-  </nb-container>
-  <nb-container v-else :style="{backgroundColor: '#fff'}">
+  <nb-container :style="{backgroundColor: '#fff'}">
     <AppNavigationEvents :on-did-focus="checkForMessage" />
     <nb-header>
       <nb-body>
@@ -55,7 +52,6 @@
     },
     data () {
       return {
-        isCheckingUser: false,
         form: {
           email: '',
           password: ''
@@ -73,13 +69,9 @@
       }
     },
     async created () {
-      this.isCheckingUser = true
-      this.$store.dispatch('auth/verifyUser')
-        .then(() => this.navigation.navigate('Home'))
-        .catch(() => {
-          this.isCheckingUser = false
-          this.checkForMessage()
-        })
+      const isAuth = this.$store.getters['auth/isAuth']
+
+      if (isAuth) { this.navigation.navigate('Home') }
     },
     methods: {
       login () {
@@ -120,13 +112,6 @@
     }
   }
 </script>
-
-<style>
-  .spinner-container {
-    display: flex;
-    justify-content: center;
-  }
-</style>
 
 
 

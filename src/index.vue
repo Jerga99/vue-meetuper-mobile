@@ -1,6 +1,9 @@
 <template>
   <view class="container">
-    <Navigation />
+    <Navigation v-if="isAuthResolved" />
+    <nb-container v-else class="spinner-container">
+      <nb-spinner color="blue" />
+    </nb-container>
   </view>
 </template>
 
@@ -52,6 +55,14 @@
   export default {
     components: {
       Navigation
+    },
+    computed: {
+      isAuthResolved () {
+        return this.$store.state.auth.isAuthResolved
+      }
+    },
+    created () {
+      this.$store.dispatch('auth/verifyUser')
     }
   }
 </script>
@@ -59,5 +70,10 @@
 <style>
   .container {
     flex: 1;
+  }
+
+  .spinner-container {
+    display: flex;
+    justify-content: center;
   }
 </style>

@@ -22,7 +22,12 @@ export default {
 
   state: {
     user: null,
-    isAuth: false
+    isAuthResolved: false
+  },
+  getters: {
+    isAuth (state) {
+      return !!state.user
+    }
   },
   actions: {
     login ({commit, state}, userData) {
@@ -46,15 +51,17 @@ export default {
           return state.user
         })
     },
-    async verifyUser ({dispatch}) {
+    async verifyUser ({dispatch, commit}) {
       const jwt = await AsyncStorage.getItem('meetuper-jwt')
 
       if (jwt && isTokenValid(jwt)) {
         const user = await dispatch('fetchCurrentUser')
+        commit('resolveAuth')
 
         return user ? Promise.resolve(jwt)
                     : Promise.reject('Cannot fetch user')
       } else {
+        commit('resolveAuth')
         return Promise.reject('Token is not valid')
       }
     }
@@ -62,6 +69,9 @@ export default {
   mutations: {
     setAuthUser (state, user) {
       return state.user = user
+    },
+    resolveAuth (state) {
+      state.isAuthResolved = true
     }
   }
 }
