@@ -32,7 +32,7 @@
     }
   )
 
-  const AuthStack = createSwitchNavigator({
+  const AuthStack = createStackNavigator({
     Login: LoginScreen,
     Register: RegisterScreen
   })

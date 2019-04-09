@@ -58,9 +58,6 @@
       <nb-button transparent :on-press="goToLogin">
         <nb-text>Already Registered? You can login here.</nb-text>
       </nb-button>
-      <nb-button transparent :on-press="sendMessageToLogin">
-        <nb-text>Send Message</nb-text>
-      </nb-button>
     </nb-content>
   </nb-container>
 </template>
@@ -107,7 +104,7 @@
         this.$v.form.$touch()
         if (!this.$v.form.$invalid) {
           this.$store.dispatch('auth/register', this.form)
-            .then(() => this.navigation.navigate('Login'))
+            .then(() => this.navigateToLogin())
             .catch(() => {
               Toast.show({
                 text: "Ooops, something went wrong",
@@ -121,7 +118,7 @@
       goToLogin () {
         this.navigation.navigate('Login')
       },
-      sendMessageToLogin () {
+      navigateToLogin () {
         this.navigation.navigate('Login', {message: 'You have been succesfuly registered. You can login now (:'})
       }
     }
