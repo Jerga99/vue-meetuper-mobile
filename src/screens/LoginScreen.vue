@@ -75,7 +75,10 @@
       this.isCheckingUser = true
       this.$store.dispatch('auth/verifyUser')
         .then(() => this.navigation.navigate('Home'))
-        .catch(() => this.isCheckingUser = false)
+        .catch(() => {
+          this.isCheckingUser = false
+          this.checkForMessage()
+        })
     },
     methods: {
       login () {
@@ -94,6 +97,17 @@
                 duration: 3000
               })
             })
+        }
+      },
+      checkForMessage () {
+        const message = this.navigation.getParam('message')
+        if (message) {
+          Toast.show({
+                text: message,
+                buttonText: "Okay",
+                type: "success",
+                duration: 3000
+              })
         }
       },
       goToRegister () {
