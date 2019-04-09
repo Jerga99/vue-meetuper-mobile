@@ -53,6 +53,13 @@ exp r -c
 3. Create Link to navigate back to login page
 
 
+###### 7 #######
+1. Create new action called "register"
+2. Send POST request to "/users/register" and don't forget provide data from your form
+3. In RegisterScreen on register button click dispatch your register action and pass your form data in
+4. In case of success response redirect user to LoginScreen
+5. In case of error display toast message
+
 
 
 

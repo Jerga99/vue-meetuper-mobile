@@ -92,7 +92,7 @@
                 buttonText: "Okay",
                 type: "danger",
                 duration: 3000
-              });
+              })
             })
         }
       },

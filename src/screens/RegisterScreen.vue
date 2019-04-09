@@ -64,6 +64,7 @@
 
 <script>
   import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+  import { Toast } from "native-base";
   export default {
     props: {
       navigation: {
@@ -101,7 +102,18 @@
     methods: {
       register () {
         this.$v.form.$touch()
-        alert(JSON.stringify(this.form))
+        if (!this.$v.form.$invalid) {
+          this.$store.dispatch('auth/register', this.form)
+            .then(() => this.navigation.navigate('Login'))
+            .catch(() => {
+              Toast.show({
+                text: "Ooops, something went wrong",
+                buttonText: "Okay",
+                type: "danger",
+                duration: 3000
+              });
+            })
+        }
       },
       goToLogin () {
         this.navigation.navigate('Login')
