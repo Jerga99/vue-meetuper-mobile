@@ -73,8 +73,7 @@
             this.navigation.navigate('Register')
             break
           case 'Create Meetup':
-            // this.navigation.navigate('Create')
-            alert('Create Meetup')
+            this.navigation.navigate('MeetupCreate')
             break
           case 'Logout':
             this.$store.dispatch('auth/logout')
