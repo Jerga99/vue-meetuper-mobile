@@ -72,7 +72,10 @@
             alert('Create Meetup')
             break
           case 'Logout':
-            alert('Logout')
+            this.$store.dispatch('auth/logout')
+              .then(() => {
+                this.navigation.navigate('Home')
+              })
             break
           default:
             return null
