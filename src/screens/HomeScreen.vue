@@ -1,6 +1,8 @@
 <template>
   <nb-container>
-    <AppHeader screen="Home" />
+    <AppHeader root
+               :navigation="navigation"
+               screen="Home" />
     <scroll-view>
       <nb-text class="header-1">Featured Meetups</nb-text>
       <nb-text v-if="user" :style="{paddingLeft: 20}">Welcome {{user.username}}</nb-text>
