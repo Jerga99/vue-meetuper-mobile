@@ -34,8 +34,7 @@
     },
     data () {
       return {
-        btnOptions: ["Login", "Register", "Settings", "Logout", "Cancel"],
-        clicked: 0
+        btnOptions: ["Login", "Register", "Create Meetup", "Logout", "Cancel"]
       }
     },
     computed: {
@@ -55,11 +54,29 @@
             destructiveButtonIndex: this.optionDestructiveIndex,
             title: "Select An Option"
           },
-          buttonIndex => {
-            this.clicked = this.btnOptions[buttonIndex];
-            alert(`${this.clicked} clicked`)
-          }
+          this.handleOptionSelect
         );
+      },
+      handleOptionSelect (buttonIndex) {
+        const option = this.btnOptions[buttonIndex]
+
+        switch (option) {
+          case 'Login':
+            this.navigation.navigate('Login')
+            break
+          case 'Register':
+            this.navigation.navigate('Register')
+            break
+          case 'Create Meetup':
+            // this.navigation.navigate('Create')
+            alert('Create Meetup')
+            break
+          case 'Logout':
+            alert('Logout')
+            break
+          default:
+            return null
+        }
       },
       goBack () {
         this.navigation.goBack()
