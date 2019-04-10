@@ -32,17 +32,22 @@
         required: true
       }
     },
-    data () {
-      return {
-        btnOptions: ["Login", "Register", "Create Meetup", "Logout", "Cancel"]
-      }
-    },
     computed: {
      optionCancelIndex () {
       return this.btnOptions.length - 1
      },
      optionDestructiveIndex () {
-      return this.optionCancelIndex - 1
+       return this.isAuth ? this.optionCancelIndex - 1 : -99
+     },
+     isAuth () {
+       return this.$store.getters['auth/isAuth']
+     },
+     btnOptions () {
+      if (this.isAuth) {
+        return ['Create Meetup', 'Logout', 'Cancel']
+      } else {
+        return ['Login', 'Register', 'Cancel']
+      }
      }
     },
     methods: {
