@@ -20,6 +20,7 @@
   import InputWithError from '@/components/InputWithError'
   import AppMessage from '@/components/AppMessage'
   import AppNavigationEvents from '@/react-components/AppNavigationEvents'
+  import AppHeader from '@/components/AppHeader'
 
   // Registering Plugins
   Vue.use(VueNativeBase)
@@ -28,8 +29,10 @@
   // Registering Component
   Vue.component('ScreenWithDrawer', ScreenWithDrawer)
   Vue.component('AppMessage', AppMessage)
+  Vue.component('AppHeader', AppHeader)
   Vue.component('InputWithError', InputWithError)
   Vue.component('AppNavigationEvents', AppNavigationEvents)
+
 
   // Provide store to global context of vue
   Vue.prototype.$store = store

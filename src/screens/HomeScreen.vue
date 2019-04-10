@@ -1,17 +1,20 @@
 <template>
-  <scroll-view>
-    <nb-text class="header-1">Featured Meetups</nb-text>
-    <nb-text v-if="user" :style="{paddingLeft: 20}">Welcome {{user.username}}</nb-text>
-    <nb-button transparent :on-press="logout">
-      <nb-text>Logout</nb-text>
-    </nb-button>
-    <!-- Separate This -->
-    <MeetupCard v-for="meetup in meetups"
-                :meetup="meetup"
-                :navigateToDetail="goToMeetupDetail"
-                :key="meetup._id" />
-    <!-- Separate This -->
-  </scroll-view>
+  <nb-container>
+    <AppHeader screen="Home" />
+    <scroll-view>
+      <nb-text class="header-1">Featured Meetups</nb-text>
+      <nb-text v-if="user" :style="{paddingLeft: 20}">Welcome {{user.username}}</nb-text>
+      <nb-button transparent :on-press="logout">
+        <nb-text>Logout</nb-text>
+      </nb-button>
+      <!-- Separate This -->
+      <MeetupCard v-for="meetup in meetups"
+                  :meetup="meetup"
+                  :navigateToDetail="goToMeetupDetail"
+                  :key="meetup._id" />
+      <!-- Separate This -->
+    </scroll-view>
+  </nb-container>
 </template>
 
 <script>
