@@ -24,7 +24,20 @@
           </nb-item>
           <nb-item stackedLabel>
             <nb-label>Start Date</nb-label>
-            <nb-input v-model="form.startDate"/>
+            <view :style="inputStyle">
+              <nb-date-picker
+                :defaultDate="defaultDate"
+                :minimumDate="minimumDate"
+                :maximumDate="maximumDate"
+                :modalTransparent="false"
+                animationType="fade"
+                androidMode="default"
+                placeHolderText="Select date"
+                :textStyle="{ color: 'black' }"
+                :placeHolderTextStyle="{ color: '#d3d3d3' }"
+                :onDateChange="setDate"
+              />
+            </view>
           </nb-item>
           <nb-item stackedLabel>
             <nb-label>Time From</nb-label>
@@ -36,11 +49,7 @@
           </nb-item>
           <nb-item stackedLabel>
             <nb-label>Category</nb-label>
-            <view :style="{flex: 1,
-                           alignSelf: 'stretch',
-                           paddingLeft: null,
-                           marginLeft: null,
-                           heigth: 50}">
+            <view :style="inputStyle">
               <nb-picker
                 mode="dropdown"
                 placeholder="Select Category"
@@ -89,8 +98,16 @@
       }
     },
     data () {
+      const today = new Date()
+      const year = today.getFullYear()
+      const month = today.getMonth()
+      const day = today.getDate()
+      const maximumDate = new Date(year + 1, month, day)
+
       return {
-        styles,
+        defaultDate: today,
+        minimumDate: today,
+        maximumDate,
         form: {
           location: null,
           title: null,
@@ -101,7 +118,13 @@
           description: null,
           timeTo: null,
           timeFrom: null
-        }
+        },
+        styles,
+        inputStyle: { flex: 1,
+                      alignSelf: 'stretch',
+                      paddingLeft: null,
+                      marginLeft: null,
+                      heigth: 50}
       }
     },
     computed: {
@@ -126,6 +149,9 @@
       },
       onCategoryChange (category) {
         this.form.category = category
+      },
+      setDate (date) {
+        this.form.startDate = date
       }
     }
   }
