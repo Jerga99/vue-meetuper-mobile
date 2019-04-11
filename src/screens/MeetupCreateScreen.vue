@@ -45,14 +45,13 @@
                 mode="dropdown"
                 placeholder="Select Category"
                 placeholderStyle="{ color: '#bfc6ea' }"
-                :selectedValue="form.category"
+                :selectedValue="selectedValue"
                 :onValueChange="onCategoryChange"
               >
-                <nb-item label="Wallet" value="key0" />
-                <nb-item label="ATM Card" value="key1" />
-                <nb-item label="Debit Card" value="key2" />
-                <nb-item label="Credit Card" value="key3" />
-                <nb-item label="Net Banking" value="key4" />
+                <nb-item v-for="category in categories"
+                         :key="category._id"
+                         :label="category.name"
+                         :value="category" />
               </nb-picker>
             </view>
           </nb-item>
@@ -105,9 +104,21 @@
         }
       }
     },
+    computed: {
+      categories () {
+        return this.$store.state.categories.items
+      },
+      selectedValue () {
+        // return this.form.category
+        //        || (this.hasCategories && this.categories[0])
+        return this.form.category
+      },
+      hasCategories () {
+        return this.categories && this.categories.length > 0
+      }
+    },
     created () {
       this.$store.dispatch('categories/fetchCategories')
-        .then(categories => alert(JSON.stringify(categories)))
     },
     methods: {
       createMeetup () {
