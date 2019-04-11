@@ -105,6 +105,10 @@
         }
       }
     },
+    created () {
+      this.$store.dispatch('categories/fetchCategories')
+        .then(categories => alert(JSON.stringify(categories)))
+    },
     methods: {
       createMeetup () {
         alert(JSON.stringify(this.form))
