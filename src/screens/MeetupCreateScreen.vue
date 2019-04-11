@@ -41,11 +41,11 @@
           </nb-item>
           <nb-item stackedLabel>
             <nb-label>Time From</nb-label>
-            <AppTimePicker />
+            <AppTimePicker :onValueChange="(time) => setTime(time, 'timeFrom')"/>
           </nb-item>
           <nb-item stackedLabel>
             <nb-label>Time To</nb-label>
-            <AppTimePicker />
+            <AppTimePicker :onValueChange="(time) => setTime(time, 'timeTo')"/>
           </nb-item>
           <nb-item stackedLabel>
             <nb-label>Category</nb-label>
@@ -88,6 +88,7 @@
 <script>
   import { KeyboardAvoidingView } from 'react-native';
   import styles from '@/styles'
+  import moment from 'moment'
   export default {
     components: {
       KeyboardAvoidingView
@@ -151,7 +152,10 @@
         this.form.category = category
       },
       setDate (date) {
-        this.form.startDate = date
+        this.form.startDate = moment(date).format()
+      },
+      setTime (time, label) {
+        this.form[label] = time
       }
     }
   }

@@ -7,7 +7,7 @@
       placeholder="Select Time"
       placeholderStyle="{ color: '#bfc6ea' }"
       :selectedValue="selectedValue"
-      :onValueChange="onValueChange"
+      :onValueChange="handleValueChange"
     >
       <nb-item v-for="time in times"
                :key="time"
@@ -19,7 +19,16 @@
 
 <script>
   export default {
-    props: {},
+    props: {
+      interval: {
+        type: Number,
+        default: 30
+      },
+      onValueChange: {
+        type: Function,
+        required: true
+      }
+    },
     data () {
       return {
         times: this.generateTimes(),
@@ -32,8 +41,9 @@
       }
     },
     methods: {
-      onValueChange (time) {
+      handleValueChange (time) {
         this.selectedValue = time
+        this.onValueChange(time)
       },
       generateTimes () {
         const times = []; // time array
@@ -46,7 +56,7 @@
           const mm = (tt%60); // getting minutes of the hour in 0-55 format
           // Format time to format hh:mm
           times[i] = ("0" + (hh >= 12 ? hh % 24 : hh % 12)).slice(-2) + ':' + ("0" + mm).slice(-2)
-          tt += 30; // time + interval of 30 minutes
+          tt += this.interval; // time + interval of 30 minutes
         }
         times.push('23:59')
         return times
