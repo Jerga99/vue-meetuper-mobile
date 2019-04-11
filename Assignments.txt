@@ -69,5 +69,20 @@ exp r -c
 6. Test out if it's working (:
 
 
+###### 9 #######
+1. Create data for the form:
+  location: null,
+  title: null,
+  startDate: null,
+  category: null,
+  image: null,
+  shortInfo: null,
+  description: null,
+  timeTo: null,
+  timeFrom: null
+2. bind data to inputs
+3. On button click of "Create Meetup" display all of these data
+
+
 
 
