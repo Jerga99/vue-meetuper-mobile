@@ -41,11 +41,11 @@
           </nb-item>
           <nb-item stackedLabel>
             <nb-label>Time From</nb-label>
-            <nb-input v-model="form.timeFrom"/>
+            <AppTimePicker />
           </nb-item>
           <nb-item stackedLabel>
             <nb-label>Time To</nb-label>
-            <nb-input v-model="form.timeTo"/>
+            <AppTimePicker />
           </nb-item>
           <nb-item stackedLabel>
             <nb-label>Category</nb-label>
@@ -156,6 +156,8 @@
     }
   }
 </script>
+
+
 
 
 

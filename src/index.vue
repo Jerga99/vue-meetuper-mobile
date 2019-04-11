@@ -23,6 +23,7 @@
   import AppMessage from '@/components/AppMessage'
   import AppNavigationEvents from '@/react-components/AppNavigationEvents'
   import AppHeader from '@/components/AppHeader'
+  import AppTimePicker from '@/components/AppTimePicker'
 
   // Registering Plugins
   Vue.use(VueNativeBase)
@@ -32,6 +33,7 @@
   Vue.component('ScreenWithDrawer', ScreenWithDrawer)
   Vue.component('AppMessage', AppMessage)
   Vue.component('AppHeader', AppHeader)
+  Vue.component('AppTimePicker', AppTimePicker)
   Vue.component('InputWithError', InputWithError)
   Vue.component('AppNavigationEvents', AppNavigationEvents)
 
