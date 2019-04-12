@@ -1,11 +1,7 @@
 import Vue from 'vue-native-core'
-import axios from 'axios'
 import axiosInstance from '@/services/axios'
 import { Platform } from 'react-native'
 import { AsyncStorage } from 'react-native'
-
-const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:3001/api/v1'
-                                       : 'http://10.0.2.2:3001/api/v1'
 
 export default {
   namespaced: true,
@@ -19,7 +15,7 @@ export default {
   },
   actions: {
     async fetchSecret () {
-      return axiosInstance.get(`${BASE_URL}/meetups/secret`)
+      return axiosInstance.get(`/meetups/secret`)
         .then(res => {
           const data = res.data
           alert(JSON.stringify(data))
@@ -27,7 +23,7 @@ export default {
         .catch(() => alert('Not Authorized'))
     },
     fetchMeetups ({commit, state}) {
-      return axios.get(`${BASE_URL}/meetups`)
+      return axiosInstance.get(`/meetups`)
         .then(res => {
           const meetups = res.data
           commit('setItems', {items: meetups, resource: 'meetups'}, {root: true})
@@ -36,7 +32,7 @@ export default {
     },
     fetchMeetupById ({commit, state}, meetupId) {
       commit('setMeetup', {})
-      return axios.get(`${BASE_URL}/meetups/${meetupId}`)
+      return axiosInstance.get(`/meetups/${meetupId}`)
         .then(res => {
           const meetup = res.data
           commit('setMeetup', meetup)
@@ -47,7 +43,7 @@ export default {
       meetupData.processedLocation = meetupData.location.toLowerCase().replace(/[\s,]+/g,'').trim()
       meetupData.meetupCreator = rootState.auth.user
 
-      return axiosInstance.post(`${BASE_URL}/meetups`, meetupData)
+      return axiosInstance.post(`/meetups`, meetupData)
         .then(res => {
           const meetup = res.data
           commit('addMeetup', meetup)
