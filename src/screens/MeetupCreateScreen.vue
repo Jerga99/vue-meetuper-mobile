@@ -151,7 +151,10 @@
     methods: {
       createMeetup () {
         this.$store.dispatch('meetups/createMeetup', this.form)
-          .then(createdMeetup => alert(createdMeetup))
+          .then(createdMeetup => {
+            this.navigation.navigate('Meetup', {meetupId: createdMeetup._id})
+          }
+        )
       },
       onCategoryChange (category) {
         this.form.category = category
