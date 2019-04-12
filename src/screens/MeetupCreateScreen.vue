@@ -1,7 +1,8 @@
 
 
 <template>
-  <KeyboardAvoidingView :style="{flex: 1}"
+  <KeyboardAvoidingView :style="{flex: 1, padding: 10}"
+                        class="keyboard-container"
                         behavior="padding"
                         keyboardVerticalOffset="23"
                         enabled>
@@ -14,15 +15,15 @@
       </view>
       <nb-content>
         <nb-form>
-          <nb-item stackedLabel>
+          <nb-item stackedLabel class="no-margin">
             <nb-label>Location</nb-label>
             <nb-input v-model="form.location"/>
           </nb-item>
-          <nb-item stackedLabel>
+          <nb-item stackedLabel class="no-margin">
             <nb-label>Title</nb-label>
             <nb-input v-model="form.title"/>
           </nb-item>
-          <nb-item stackedLabel>
+          <nb-item stackedLabel class="no-margin">
             <nb-label>Start Date</nb-label>
             <view :style="inputStyle">
               <nb-date-picker
@@ -39,15 +40,15 @@
               />
             </view>
           </nb-item>
-          <nb-item stackedLabel>
+          <nb-item stackedLabel class="no-margin">
             <nb-label>Time From</nb-label>
             <AppTimePicker :onValueChange="(time) => setTime(time, 'timeFrom')"/>
           </nb-item>
-          <nb-item stackedLabel>
+          <nb-item stackedLabel class="no-margin">
             <nb-label>Time To</nb-label>
             <AppTimePicker :onValueChange="(time) => setTime(time, 'timeTo')"/>
           </nb-item>
-          <nb-item stackedLabel>
+          <nb-item stackedLabel class="no-margin">
             <nb-label>Category</nb-label>
             <view :style="inputStyle">
               <nb-picker
@@ -64,15 +65,18 @@
               </nb-picker>
             </view>
           </nb-item>
-          <nb-item stackedLabel>
+          <nb-item stackedLabel class="no-margin">
             <nb-label>Image</nb-label>
             <nb-input v-model="form.image"/>
           </nb-item>
-          <nb-item stackedLabel>
+          <nb-item stackedLabel class="no-margin">
             <nb-label>Description</nb-label>
-            <nb-input v-model="form.description"/>
+            <nb-textarea :rowSpan="3"
+                         :style="{width: '100%'}"
+                         bordered
+                         v-model="form.description" />
           </nb-item>
-          <nb-item stackedLabel>
+          <nb-item stackedLabel class="no-margin">
             <nb-label>Additional Info</nb-label>
             <nb-input v-model="form.shortInfo"/>
           </nb-item>
@@ -161,6 +165,15 @@
   }
 </script>
 
+<style>
+  .no-margin {
+    marginLeft: 0;
+  }
+
+  .keyboard-container {
+    padding: 0 10px;
+  }
+</style>
 
 
 
