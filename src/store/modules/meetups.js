@@ -42,6 +42,13 @@ export default {
           commit('setMeetup', meetup)
           return state.item
         })
+    },
+    createMeetup ({rootState}, meetupData) {
+      meetupData.processedLocation = meetupData.location.toLowerCase().replace(/[\s,]+/g,'').trim()
+      meetupData.meetupCreator = rootState.auth.user
+
+      return axiosInstance.post(`${BASE_URL}/meetups`, meetupData)
+        .then(res => res.data)
     }
   },
   mutations: {

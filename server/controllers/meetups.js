@@ -63,7 +63,9 @@ exports.createMeetup = function(req, res) {
       return res.status(422).send({errors});
     }
 
-    return res.json(createdMeetup)
+    User.populate(createdMeetup, 'meetupCreator', function (err) {
+      return res.json(createdMeetup)
+    })
   })
 }
 

@@ -150,7 +150,8 @@
     },
     methods: {
       createMeetup () {
-        alert(JSON.stringify(this.form))
+        this.$store.dispatch('meetups/createMeetup', this.form)
+          .then(createdMeetup => alert(createdMeetup))
       },
       onCategoryChange (category) {
         this.form.category = category
